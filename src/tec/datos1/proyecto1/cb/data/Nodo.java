@@ -13,25 +13,33 @@ package tec.datos1.proyecto1.cb.data;
 
 
 public class Nodo<T extends Comparable<T>> {
-    private Nodo<T> siguiente;
+    private Nodo<T> next;
+    private Nodo<T> prev;
     private T valor;
     
     public Nodo(T valor) {
         this.valor = valor;
-        siguiente = null;
+        next = null;
+        prev = null;
     }
 
-    public Nodo(T valor, Nodo<T> siguiente) {
+    public Nodo(T valor, Nodo<T> next) {
         this(valor);
-        this.siguiente = siguiente;
+        this.next = next;
+    }
+    
+    public Nodo(Nodo<T> prev, T valor, Nodo<T> next) {
+        this(valor);
+        this.next = next;
+        this.prev = prev;
     }
 
     public Nodo<T> getNext() {
-        return siguiente;
+        return next;
     }
 
-    public void setNext(Nodo<T> siguiente) {
-        this.siguiente = siguiente;
+    public void setNext(Nodo<T> next) {
+        this.next = next;
     }
 
     public T getValor() {
@@ -40,6 +48,14 @@ public class Nodo<T extends Comparable<T>> {
 
     public void setValor(T valor) {
         this.valor = valor;
+    }
+    
+    public Nodo<T> getPrev() {
+        return prev;
+    }
+    
+    public void setPrev(Nodo<T> prev) {
+        this.prev = prev;
     }
 }
 
