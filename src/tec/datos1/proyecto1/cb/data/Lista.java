@@ -11,59 +11,100 @@ package tec.datos1.proyecto1.cb.data;
  * @param <T>
  */
 
+import java.util.ArrayList;
 
-public class Lista<T extends Comparable<T>> {
-    private Nodo<T> primero;
+public class Lista<T extends Comparable<T>> implements List<T>{
+    private Nodo<T> first;
+    private ArrayList<T> array;
 
     public Lista() {
-        this.primero = null;
+        this.first = null;
     }
 
+    @Override
     public boolean isEmpty() {
-        return this.primero == null;
+        return this.first == null;
     }
 
-    public Nodo<T> getPrimero() {
-        return primero;
-    }
-
-    public void setPrimero(Nodo<T> primero) {
-        this.primero = primero;
-    }
-
-    public void insertarFinal(T valor) {
-        if (this.primero == null) {
-            this.primero = new Nodo<T>(valor);
+    @Override
+    public void addLast(T valor) {
+        if (this.first == null) {
+            this.first = new Nodo<>(valor);
         } else {
-            Nodo<T> actual = this.primero;
+            Nodo<T> actual = this.first;
             while (actual.getNext() != null) {
                 actual = actual.getNext();
             }
-            actual.setNext(new Nodo<T>(valor));
+            actual.setNext(new Nodo<>(valor));
         }
 
     }
 
-    public void imprimir() {
-        Nodo<T> actual = this.primero;
+    @Override
+    public ArrayList printList() {
+        Nodo<T> actual = this.first;
         while (actual != null) {
-            System.out.println(actual.getValor());
+            array.add(actual.getValor());
             actual = actual.getNext();
-        }		
+        }
+        return array;
     }
 
-    public void insertarInicio(T valor) {
-        if (this.primero == null) {
-            this.primero = new Nodo<T>(valor);
+    @Override
+    public void addFirst(T valor) {
+        if (this.first == null) {
+            this.first = new Nodo<>(valor);
         } else {
-            Nodo<T> nuevo = new Nodo<T>(valor);
-            nuevo.setNext(this.primero);
-            this.primero = nuevo;
+            Nodo<T> nuevo = new Nodo<>(valor);
+            nuevo.setNext(this.first);
+            this.first = nuevo;
         }
     }
 
-    public Nodo<T> buscar(T buscado) {
-        Nodo<T> actual = this.primero;
+    @Override
+    public Nodo<T> search(T buscado) {
+        Nodo<T> actual = this.first;
+        int pos = 0;
+        while (actual != null) {
+            if (actual.getValor().compareTo(buscado) == 0) {
+                return actual;
+            } else {
+                actual = actual.getNext();
+                pos++;
+            }
+        }
+        return null;
+    }
+
+    @Override
+    public void kickout(T buscado) {
+        Nodo<T> actual = this.first;
+        
+        while (actual != null) {
+            if (actual.getValor() == buscado) {
+                this.first = actual.getNext();
+                return;
+            } else if (actual.getNext().getValor().compareTo(buscado) == 0) {
+                actual.setNext(actual.getNext().getNext());
+                return;
+            } else {
+                actual = actual.getNext();
+            }
+        }
+    }
+    
+    @Override
+    public void insertPos(int pos) {
+        Nodo<T> actual = this.first;
+        int count = 0;
+        while (count != pos) {
+            
+        }
+    }
+    
+    @Override
+    public Nodo<T> searchPos(int pos) {
+        Nodo<T> actual = this.first;
         while (actual != null) {
             if (actual.getValor().compareTo(buscado) == 0) {
                 return actual;
@@ -74,36 +115,4 @@ public class Lista<T extends Comparable<T>> {
         return null;
     }
 
-    public Nodo<T> eliminar(T buscado) {
-        Nodo<T> actual = this.primero;
-        
-        if (actual.getValor() == buscado) {
-            this.primero = actual.getNext();
-        }
-        while (actual != null) {
-            if (actual.getNext().getValor().compareTo(buscado) == 0) {
-                actual.setNext(actual.getNext().getNext());
-                return null;
-            } else {
-                actual = actual.getNext();
-            }
-        }
-        return null;
-    }
-    
-//    public Nodo<T> eliminar(T buscado) {
-//        Nodo<T> actual = this.primero;
-//        
-//            if (actual.getValor().equals(buscado)) {
-//                this.primero = actual.getNext();
-//            }
-//     
-//            else {
-//                while(actual.getNext().getValor()!=buscado) 
-//                actual = actual.getNext();  
-//            } 
-//            actual.setNext(actual.getNext().getNext());
-//        //size--;
-//        return actual;
-//    }
-}    
+}  
