@@ -36,10 +36,10 @@ public class Lista<T extends Comparable<T>> {
             this.primero = new Nodo<T>(valor);
         } else {
             Nodo<T> actual = this.primero;
-            while (actual.getSiguiente() != null) {
-                actual = actual.getSiguiente();
+            while (actual.getNext() != null) {
+                actual = actual.getNext();
             }
-            actual.setSiguiente(new Nodo<T>(valor));
+            actual.setNext(new Nodo<T>(valor));
         }
 
     }
@@ -48,7 +48,7 @@ public class Lista<T extends Comparable<T>> {
         Nodo<T> actual = this.primero;
         while (actual != null) {
             System.out.println(actual.getValor());
-            actual = actual.getSiguiente();
+            actual = actual.getNext();
         }		
     }
 
@@ -57,7 +57,7 @@ public class Lista<T extends Comparable<T>> {
             this.primero = new Nodo<T>(valor);
         } else {
             Nodo<T> nuevo = new Nodo<T>(valor);
-            nuevo.setSiguiente(this.primero);
+            nuevo.setNext(this.primero);
             this.primero = nuevo;
         }
     }
@@ -68,41 +68,42 @@ public class Lista<T extends Comparable<T>> {
             if (actual.getValor().compareTo(buscado) == 0) {
                 return actual;
             } else {
-                actual = actual.getSiguiente();
+                actual = actual.getNext();
             }
         }
         return null;
     }
 
-    public Nodo<T> eliminar1(T buscado) {
+    public Nodo<T> eliminar(T buscado) {
         Nodo<T> actual = this.primero;
         
         if (actual.getValor() == buscado) {
-            this.primero = actual.getSiguiente();
+            this.primero = actual.getNext();
         }
         while (actual != null) {
-            if (actual.getValor().compareTo(buscado) == 0) {
-                
+            if (actual.getNext().getValor().compareTo(buscado) == 0) {
+                actual.setNext(actual.getNext().getNext());
+                return null;
             } else {
-                actual = actual.getSiguiente();
+                actual = actual.getNext();
             }
         }
         return null;
     }
     
-    public Nodo<T> eliminar(T buscado) {
-        Nodo<T> actual = this.primero;
-        
-            if (actual.getValor().equals(buscado)) {
-                this.primero = actual.getSiguiente();
-            }
-     
-            else {
-                while(actual.getSiguiente().getValor()!=buscado) 
-                actual = actual.getSiguiente();  
-            } 
-            actual.setSiguiente(actual.getSiguiente().getSiguiente());
-        //size--;
-        return actual;
-    }
+//    public Nodo<T> eliminar(T buscado) {
+//        Nodo<T> actual = this.primero;
+//        
+//            if (actual.getValor().equals(buscado)) {
+//                this.primero = actual.getNext();
+//            }
+//     
+//            else {
+//                while(actual.getNext().getValor()!=buscado) 
+//                actual = actual.getNext();  
+//            } 
+//            actual.setNext(actual.getNext().getNext());
+//        //size--;
+//        return actual;
+//    }
 }    
