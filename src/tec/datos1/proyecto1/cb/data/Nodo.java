@@ -26,11 +26,11 @@ public class Nodo<T extends Comparable<T>> {
         this.siguiente = siguiente;
     }
 
-    public Nodo<T> getSiguiente() {
+    public Nodo<T> getNext() {
         return siguiente;
     }
 
-    public void setSiguiente(Nodo<T> siguiente) {
+    public void setNext(Nodo<T> siguiente) {
         this.siguiente = siguiente;
     }
 
