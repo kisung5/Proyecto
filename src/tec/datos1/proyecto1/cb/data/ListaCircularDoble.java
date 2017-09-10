@@ -11,26 +11,26 @@ package tec.datos1.proyecto1.cb.data;
  * @param <T>
  */
 
-public class Lista<T extends Comparable<T>> implements List<T>{
-    private Nodo<T> first;
+public class ListaCircularDoble<T extends Comparable <T>> implements List<T> {
+    private Nodo<T> last;
     private int size;
-
-    public Lista() {
-        this.first = null;
+    
+    public ListaCircularDoble(){
+        last = null;
     }
-
+    
     @Override
     public boolean isEmpty() {
-        return this.first == null;
+        return this.last == null;
     }
 
     @Override
     public void addLast(T valor) {
-        if (this.first == null) {
-            this.first = new Nodo<>(valor);
+        if (this.last == null) {
+            this.last = new Nodo<>(valor);
             this.size++;
         } else {
-            Nodo<T> actual = this.first;
+            Nodo<T> actual = this.last;
             while (actual.getNext() != null) {
                 actual = actual.getNext();
             }
@@ -42,7 +42,7 @@ public class Lista<T extends Comparable<T>> implements List<T>{
 
     @Override
     public T print() {
-        Nodo<T> actual = this.first;
+        Nodo<T> actual = this.last;
         while (actual != null) {
             System.out.println(actual.getValor());
             actual = actual.getNext();
@@ -52,20 +52,20 @@ public class Lista<T extends Comparable<T>> implements List<T>{
 
     @Override
     public void addFirst(T valor) {
-        if (this.first == null) {
-            this.first = new Nodo<>(valor);
+        if (this.last == null) {
+            this.last = new Nodo<>(valor);
             this.size++;
         } else {
             Nodo<T> nuevo = new Nodo<>(valor);
-            nuevo.setNext(this.first);
-            this.first = nuevo;
+            nuevo.setNext(this.last);
+            this.last = nuevo;
             this.size++;
         }
     }
 
     @Override
     public Nodo<T> search(T buscado) {
-        Nodo<T> actual = this.first;
+        Nodo<T> actual = this.last;
         int pos = 0;
         while (actual != null) {
             if (actual.getValor().compareTo(buscado) == 0) {
@@ -80,11 +80,11 @@ public class Lista<T extends Comparable<T>> implements List<T>{
 
     @Override
     public void kickout(T buscado) {
-        Nodo<T> actual = this.first;
+        Nodo<T> actual = this.last;
         
         while (actual != null) {
             if (actual.getValor() == buscado) {
-                this.first = actual.getNext();
+                this.last = actual.getNext();
                 this.size--;
                 return;
             } else if (actual.getNext().getValor().compareTo(buscado) == 0) {
@@ -99,13 +99,13 @@ public class Lista<T extends Comparable<T>> implements List<T>{
     
     @Override
     public void insertPos(int pos, T valor) {
-        Nodo<T> actual = this.first;
+        Nodo<T> actual = this.last;
         int count = 0;
         while (count < size) {
             if (pos == 0) {
                 Nodo<T> nuevo = new Nodo<>(valor);
-                nuevo.setNext(this.first);
-                this.first = nuevo;
+                nuevo.setNext(this.last);
+                this.last = nuevo;
                 this.size++;
                 return;
             } else if (count == (pos - 1)) {
@@ -124,7 +124,7 @@ public class Lista<T extends Comparable<T>> implements List<T>{
     
     @Override
     public Nodo<T> search(int pos) {
-        Nodo<T> actual = this.first;
+        Nodo<T> actual = this.last;
         int count = 0;
         while (count < size) {
             if (count == pos) {
@@ -139,11 +139,11 @@ public class Lista<T extends Comparable<T>> implements List<T>{
     
     @Override
     public void kickout(int pos) {
-        Nodo<T> actual = this.first;
+        Nodo<T> actual = this.last;
         int count = 0;
         while (count < size) {
             if (pos == 0) {
-                this.first = actual.getNext();
+                this.last = actual.getNext();
             } else if (count == (pos - 1)) {
                 actual.setNext(actual.getNext().getNext());
                 this.size--;
@@ -154,5 +154,5 @@ public class Lista<T extends Comparable<T>> implements List<T>{
             }            
         }
     }
-
-}  
+    
+}

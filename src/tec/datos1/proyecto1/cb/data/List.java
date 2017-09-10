@@ -18,9 +18,10 @@ public interface List<T extends Comparable<T>> {
     void addFirst(T valor);
     Nodo<T> search(T buscado);
     void kickout(T buscado);
-    void insertPos(int pos);
-    ArrayList printList();
-    Nodo<T> searchPos(int pos);
+    void kickout(int pos);
+    void insertPos(int pos, T valor);
+    T print();
+    Nodo<T> search(int pos);
     
     
 }
