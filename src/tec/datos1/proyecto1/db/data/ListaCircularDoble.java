@@ -28,13 +28,14 @@ public class ListaCircularDoble<T extends Comparable <T>> implements List<T> {
     public void addLast(T valor) {
         if (this.last == null) {
             this.last = new Nodo<>(valor);
+            this.last.setNext(last);
+            this.last.setPrev(last);
             this.size++;
         } else {
-            Nodo<T> actual = this.last;
-            while (actual.getNext() != null) {
-                actual = actual.getNext();
-            }
-            actual.setNext(new Nodo<>(valor));
+            Nodo<T> actual = new Nodo<>(valor);
+            actual.setNext(last.getNext());
+            this.last.setNext(actual);
+            last = last.getNext();
             this.size++;
         }
 
@@ -43,10 +44,11 @@ public class ListaCircularDoble<T extends Comparable <T>> implements List<T> {
     @Override
     public T print() {
         Nodo<T> actual = this.last;
-        while (actual != null) {
+        while (actual.getNext().getValor() != last.getValor()) {
             System.out.println(actual.getValor());
             actual = actual.getNext();
         }
+        System.out.println(actual.getValor());
         return null;
     }
 
@@ -57,8 +59,7 @@ public class ListaCircularDoble<T extends Comparable <T>> implements List<T> {
             this.size++;
         } else {
             Nodo<T> nuevo = new Nodo<>(valor);
-            nuevo.setNext(this.last);
-            this.last = nuevo;
+            last.setNext(nuevo);
             this.size++;
         }
     }
@@ -66,28 +67,22 @@ public class ListaCircularDoble<T extends Comparable <T>> implements List<T> {
     @Override
     public Nodo<T> search(T buscado) {
         Nodo<T> actual = this.last;
-        int pos = 0;
-        while (actual != null) {
+        while (actual.getNext().getValor() != last.getValor()) {
             if (actual.getValor().compareTo(buscado) == 0) {
                 return actual;
             } else {
                 actual = actual.getNext();
-                pos++;
             }
         }
-        return null;
+        return actual;
     }
 
     @Override
     public void kickout(T buscado) {
         Nodo<T> actual = this.last;
         
-        while (actual != null) {
-            if (actual.getValor() == buscado) {
-                this.last = actual.getNext();
-                this.size--;
-                return;
-            } else if (actual.getNext().getValor().compareTo(buscado) == 0) {
+        while (actual.getNext().getValor() != last.getValor()) {
+            if (actual.getNext().getValor().compareTo(buscado) == 0) {
                 actual.setNext(actual.getNext().getNext());
                 this.size--;
                 return;
@@ -104,14 +99,16 @@ public class ListaCircularDoble<T extends Comparable <T>> implements List<T> {
         while (count < size) {
             if (pos == 0) {
                 Nodo<T> nuevo = new Nodo<>(valor);
-                nuevo.setNext(this.last);
-                this.last = nuevo;
+                nuevo.setNext(last.getNext());
+                last.setNext(nuevo);
+                this.last = last.getNext();
                 this.size++;
                 return;
             } else if (count == (pos - 1)) {
                 Nodo<T> nuevo = new Nodo<>(valor);
-                nuevo.setNext(actual.getNext());
-                actual.setNext(nuevo);
+                nuevo.setNext(last.getNext());
+                last.setNext(nuevo);
+                this.last = last.getNext();
                 this.size++;
                 return;
             } else {
@@ -142,9 +139,7 @@ public class ListaCircularDoble<T extends Comparable <T>> implements List<T> {
         Nodo<T> actual = this.last;
         int count = 0;
         while (count < size) {
-            if (pos == 0) {
-                this.last = actual.getNext();
-            } else if (count == (pos - 1)) {
+            if (count == (pos - 1)) {
                 actual.setNext(actual.getNext().getNext());
                 this.size--;
                 return;
