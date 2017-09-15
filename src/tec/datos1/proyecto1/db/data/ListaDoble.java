@@ -11,6 +11,7 @@ package tec.datos1.proyecto1.db.data;
  * @author fundacionsos
  * @param <T>
  */
+
 public class ListaDoble<T extends Comparable<T>> implements List<T> {
     private Nodo<T> indicate;
     private int size;
@@ -36,7 +37,6 @@ public class ListaDoble<T extends Comparable<T>> implements List<T> {
             }
             actual.setNext(new Nodo<>(valor));
             this.size++;
-            this.indicate = actual.getNext();
         }
 
     }
@@ -67,13 +67,11 @@ public class ListaDoble<T extends Comparable<T>> implements List<T> {
     @Override
     public Nodo<T> search(T buscado) {
         Nodo<T> actual = this.indicate;
-        int pos = 0;
         while (actual != null) {
             if (actual.getValor().compareTo(buscado) == 0) {
                 return actual;
             } else {
                 actual = actual.getNext();
-                pos++;
             }
         }
         return null;
@@ -155,34 +153,5 @@ public class ListaDoble<T extends Comparable<T>> implements List<T> {
             }            
         }
     }
-    
-//    public Nodo<T> searchback(T buscado) {
-//        Nodo<T> actual = this.indicate;
-//        while (actual != null) {
-//            if (actual.getValor().compareTo(buscado) == 0) {
-//                return actual;
-//            } else {
-//                actual = actual.getPrev();
-//            }
-//        }
-//        return null;
-//    }
-//    
-//    public void kickoutback(T buscado) {
-//        Nodo<T> actual = this.indicate;
-//        while (actual != null) {
-//            if (actual.getValor().compareTo( buscado) == 0) {
-//                this.indicate = actual.getPrev();
-//                this.size--;
-//                return;
-//            } else if(actual.getPrev().getValor().compareTo(buscado) == 0) {
-//                actual.setPrev(actual.getPrev().getPrev());
-//                this.size--;
-//                return;
-//            } else {
-//                actual = actual.getPrev();
-//            }
-//        }
-//    }
     
 }
