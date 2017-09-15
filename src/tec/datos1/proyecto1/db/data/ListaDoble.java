@@ -36,6 +36,7 @@ public class ListaDoble<T extends Comparable<T>> implements List<T> {
                 actual = actual.getNext();
             }
             actual.setNext(new Nodo<>(valor));
+            actual.getNext().setPrev(actual);
             this.size++;
         }
 
@@ -88,6 +89,7 @@ public class ListaDoble<T extends Comparable<T>> implements List<T> {
                 return;
             } else if (actual.getNext().getValor().compareTo(buscado) == 0) {
                 actual.setNext(actual.getNext().getNext());
+                actual.getNext().setPrev(actual);
                 this.size--;
                 return;
             } else {
@@ -111,6 +113,7 @@ public class ListaDoble<T extends Comparable<T>> implements List<T> {
                 Nodo<T> nuevo = new Nodo<>(valor);
                 nuevo.setNext(actual.getNext());
                 actual.setNext(nuevo);
+                actual.getNext().setPrev(actual);
                 this.size++;
                 return;
             } else {
@@ -145,6 +148,7 @@ public class ListaDoble<T extends Comparable<T>> implements List<T> {
                 this.indicate = actual.getNext();
             } else if (count == (pos - 1)) {
                 actual.setNext(actual.getNext().getNext());
+                actual.getNext().setPrev(actual);
                 this.size--;
                 return;
             } else {
