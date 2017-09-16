@@ -4,34 +4,38 @@
 <?import javafx.scene.control.ContextMenu?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.SeparatorMenuItem?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TreeView?>
 <?import javafx.scene.layout.Pane?>
 
-
-<Pane maxHeight="400.0" maxWidth="600.0" minHeight="400.0" minWidth="600.0" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tec.datos1.proyecto1.db.frame.ViewFrameController">
+<Pane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="408.0" prefWidth="607.0" snapToPixel="false" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tec.datos1.proyecto1.db.frame.ViewFrameController">
    <children>
-      <TreeView fx:id="treeView" prefHeight="400.0" prefWidth="141.0">
+      <TreeView fx:id="treeView" prefHeight="408.0" prefWidth="141.0">
          <contextMenu>
-            <ContextMenu fx:id="contextMenu">
+            <ContextMenu fx:id="menu">
               <items>
-                <MenuItem fx:id="menuItem" mnemonicParsing="false" text="Unspecified Action" />
+                <MenuItem fx:id="menuItemShow" mnemonicParsing="false" text="Mostrar" />
+                  <SeparatorMenuItem mnemonicParsing="false" />
+                  <MenuItem fx:id="menuItemAdd" mnemonicParsing="false" text="Agregar" />
+                  <MenuItem fx:id="menuItemDelet" mnemonicParsing="false" text="Eliminar" />
+                  <SeparatorMenuItem mnemonicParsing="false" />
+                  <MenuItem fx:id="menuItemSearch" mnemonicParsing="false" text="Buscar" />
+                  <MenuItem fx:id="menuItemUpdate" mnemonicParsing="false" text="Actualizar" />
               </items>
             </ContextMenu>
          </contextMenu>
       </TreeView>
-      <TableView fx:id="tableView" layoutX="141.0" prefHeight="363.0" prefWidth="459.0">
+      <TableView fx:id="tableView" layoutX="141.0" prefHeight="361.0" prefWidth="465.0">
         <columns>
-          <TableColumn prefWidth="75.0" text="C2" />
-            <TableColumn prefWidth="75.0" text="Column X" />
-            <TableColumn prefWidth="75.0" text="Column X" />
-            <TableColumn prefWidth="75.0" text="Column X" />
-            <TableColumn prefWidth="81.0" text="Column X" />
-          <TableColumn prefWidth="75.0" text="C1" />
+          <TableColumn fx:id="column1" prefWidth="120.0" />
+            <TableColumn fx:id="column2" prefWidth="121.0" />
+            <TableColumn fx:id="column3" minWidth="1.0" prefWidth="107.0" />
+            <TableColumn fx:id="column4" minWidth="0.0" prefWidth="110.0" />
         </columns>
       </TableView>
       <Button fx:id="button" layoutX="306.0" layoutY="363.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="30.0" prefWidth="65.0" text="Commit" />
-      <Label fx:id="label" layoutX="389.0" layoutY="363.0" prefHeight="30.0" prefWidth="58.0" />
+      <Label fx:id="label" layoutX="389.0" layoutY="363.0" prefHeight="30.0" prefWidth="193.0" />
    </children>
 </Pane>
