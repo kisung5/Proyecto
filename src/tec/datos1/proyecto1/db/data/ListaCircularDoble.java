@@ -34,6 +34,8 @@ public class ListaCircularDoble<T extends Comparable <T>> implements List<T> {
         } else {
             Nodo<T> actual = new Nodo<>(valor);
             actual.setNext(last.getNext());
+            actual.setPrev(last);
+            actual.getNext().setPrev(actual);
             this.last.setNext(actual);
             last = last.getNext();
             this.size++;
@@ -44,11 +46,13 @@ public class ListaCircularDoble<T extends Comparable <T>> implements List<T> {
     @Override
     public T print() {
         Nodo<T> actual = this.last;
+        if (this.last != null) {
+            System.out.println(actual.getValor());
+        }
         while (actual.getNext().getValor() != last.getValor()) {
             System.out.println(actual.getValor());
             actual = actual.getNext();
         }
-        System.out.println(actual.getValor());
         return null;
     }
 
@@ -56,9 +60,12 @@ public class ListaCircularDoble<T extends Comparable <T>> implements List<T> {
     public void addFirst(T valor) {
         if (this.last == null) {
             this.last = new Nodo<>(valor);
+            this.last.setNext(last);
+            this.last.setPrev(last);
             this.size++;
         } else {
             Nodo<T> nuevo = new Nodo<>(valor);
+            nuevo.setPrev(last);
             last.setNext(nuevo);
             this.size++;
         }
@@ -84,10 +91,12 @@ public class ListaCircularDoble<T extends Comparable <T>> implements List<T> {
         while (actual.getNext().getValor() != last.getValor()) {
             if (actual.getNext().getValor().compareTo(buscado) == 0) {
                 actual.setNext(actual.getNext().getNext());
+                actual.getNext().setPrev(actual);
                 this.size--;
                 return;
             } else {
                 actual = actual.getNext();
+                actual.getNext().setPrev(actual);
             }
         }
     }
@@ -141,10 +150,12 @@ public class ListaCircularDoble<T extends Comparable <T>> implements List<T> {
         while (count < size) {
             if (count == (pos - 1)) {
                 actual.setNext(actual.getNext().getNext());
+                actual.getNext().setPrev(actual);
                 this.size--;
                 return;
             } else {
                 actual = actual.getNext();
+                actual.getNext().setPrev(actual);
                 count++;
             }            
         }
