@@ -5,41 +5,48 @@
  */
 package tec.datos1.proyecto1.db.frame;
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
-import javafx.scene.control.ContextMenu;
-import javafx.stage.Stage;
-import javafx.scene.control.MenuItem;
+import javafx.scene.control.TreeCell;
+import javafx.scene.control.TreeItem;
+import javafx.scene.control.TreeView;
+import javafx.util.Callback;
+import tec.datos1.proyecto1.db.frame.MenuCreator.ShowMenu;
 /**
  *
  * @author fundacionsos
  */
 public class ViewFrameController implements Initializable {
     
+    public TreeItem<String> rootItem;
+    
     @FXML
     private Label label;
-    private ContextMenu menu;
-    private NewWindow n = new NewWindow();
     
     @FXML
-    private void handleButtonAction(ActionEvent event) throws IOException {
-        n.newWindow("Add");
+    private TreeView<String> treeView;
+    
+    @FXML
+    private void handleButtonAction(ActionEvent event){
         label.setText("Hello World!");
-    }
-    
-    @FXML
-    private void contextHandleMenu() {
-        
     }
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        rootItem = new TreeItem<> ("Principal");
+        rootItem.setExpanded(true);
+
+        treeView.setRoot(rootItem);
         
-    }    
-    
+        treeView.setCellFactory(new Callback<TreeView<String>, TreeCell<String>>() {
+            @Override
+            public TreeCell<String> call(TreeView<String> arg0) {
+                return new ShowMenu(rootItem);
+            }
+        });
+    }
 }

@@ -24,10 +24,10 @@ public class AddFrameController implements Initializable{
         this.stage= stagePrincipal;
     }
     
-//    @FXML
-//    private void salirVentana(ActionEvent event) {
-//        stage.close();
-//    }
+    @FXML
+    private void addOut(ActionEvent event) {
+        stage.close();
+    }
   
     @Override
     public void initialize(URL url, ResourceBundle rb) {

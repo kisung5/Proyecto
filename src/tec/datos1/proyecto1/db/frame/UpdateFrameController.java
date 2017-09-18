@@ -16,7 +16,7 @@ import javafx.stage.Stage;
  *
  * @author fundacionsos
  */
-public class SearchFrameController implements Initializable{
+public class UpdateFrameController implements Initializable{
     private Stage stage;
     
     public void setStage(Stage stagePrincipal) {
@@ -24,7 +24,7 @@ public class SearchFrameController implements Initializable{
     }
     
     @FXML
-    private void searchOut(ActionEvent event) {
+    private void updateOut (ActionEvent event) {
         stage.close();
     }
   
@@ -33,3 +33,4 @@ public class SearchFrameController implements Initializable{
         // TODO
     }    
 }
+

@@ -19,7 +19,7 @@ import javafx.stage.Stage;
 public class NewWindow {
     
     @SuppressWarnings("UseSpecificCatch")
-    public void newWindow(String name) throws IOException {
+    public static void newWindow(String name) throws IOException {
         FXMLLoader loader = new FXMLLoader(Main.class.getResource(name+".fxml"));
         AnchorPane form = (AnchorPane) loader.load();
         Stage window = new Stage();
@@ -37,6 +37,10 @@ public class NewWindow {
             window.show();
         } else if (name.compareTo("Search") == 0) {
             SearchFrameController controller = loader.getController();
+            controller.setStage(window);
+            window.show();
+        } else if (name.compareTo("Update") == 0) {
+            UpdateFrameController controller = loader.getController();
             controller.setStage(window);
             window.show();
         }

@@ -5,34 +5,25 @@
  */
 package tec.datos1.proyecto1.db.frame;
 
-import java.io.IOException;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.TreeView;
 import javafx.scene.layout.AnchorPane;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
-
-
-//import static javax.swing.UIManager.getString;
-//import tec.datos1.proyecto1.db.data.List;
-import tec.datos1.proyecto1.db.json.Key;
-//import static tec.datos1.proyecto1.db.data.ListFactory.getList;
-//import tec.datos1.proyecto1.db.json.JsonConstructor;
-import tec.datos1.proyecto1.db.json.KeyCon;
-//import static tec.datos1.proyecto1.db.json.MakeDir.makeDir;
-//import static tec.datos1.proyecto1.db.json.MakeDir.eraseFile;
 
 /**
  *
  * @author fundacionsos
+ * 
  */
 
 public class Main extends Application {
     
     public static Stage stage;
     private AnchorPane rootPane;
+    private TreeView tree;
     
     @Override
     public void start(Stage stage) throws Exception {
@@ -42,6 +33,7 @@ public class Main extends Application {
         Scene scene = new Scene(root);
         stage.setResizable(false);
         stage.setTitle("Linked DB by Kisung Lim");
+        
         stage.setScene(scene);
         stage.show();
     }
@@ -49,24 +41,10 @@ public class Main extends Application {
 
     /**
      * @param args the command line arguments
+     * El metodo main que lanza los args de la interfaz.
      */
+    
     public static void main(String[] args) {
-//        Key key = new Key("int","hola","0","true","Store1");
-//        KeyCon keycon = new KeyCon();
-//        System.out.println(keycon.storeToString(key));
-//        System.out.println(keycon.validar(key));
-//        String username = System.getProperty("user.name");
-//        String filename = " path/" + username + ".txt"; //extension if you need one
-//        System.out.println(filename);
-        
-//        lista.addLast(hola);
-//        lista.addLast(quetal);
-//        lista.print();
-//        List<Integer> lista2 = getList("circle");
-//        lista2.addLast(6);
-//        lista2.addLast(10);
-//        lista2.print();
-        
-    launch(args);
+        launch(args);
     }
 }
