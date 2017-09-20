@@ -69,7 +69,8 @@ public class ListaDoble<T extends Comparable<T>> implements List<T> {
     public Nodo<T> search(T buscado) {
         Nodo<T> actual = this.indicate;
         while (actual != null) {
-            if (actual.getValor().compareTo(buscado) == 0) {
+            if (actual.getValor() == buscado) {
+//            if (actual.getValor().compareTo(buscado) == 0) {
                 return actual;
             } else {
                 actual = actual.getNext();
@@ -87,7 +88,8 @@ public class ListaDoble<T extends Comparable<T>> implements List<T> {
                 this.indicate = actual.getNext();
                 this.size--;
                 return;
-            } else if (actual.getNext().getValor().compareTo(buscado) == 0) {
+            } else if (actual.getNext().getValor() == buscado) {
+//            } else if (actual.getNext().getValor().compareTo(buscado) == 0) {
                 actual.setNext(actual.getNext().getNext());
                 actual.getNext().setPrev(actual);
                 this.size--;

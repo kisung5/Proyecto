@@ -75,7 +75,8 @@ public class ListaCircularDoble<T extends Comparable <T>> implements List<T> {
     public Nodo<T> search(T buscado) {
         Nodo<T> actual = this.last;
         while (actual.getNext().getValor() != last.getValor()) {
-            if (actual.getValor().compareTo(buscado) == 0) {
+            if (actual.getValor() == buscado) {
+//            if (actual.getValor().compareTo(buscado) == 0) {
                 return actual;
             } else {
                 actual = actual.getNext();
@@ -89,7 +90,8 @@ public class ListaCircularDoble<T extends Comparable <T>> implements List<T> {
         Nodo<T> actual = this.last;
         
         while (actual.getNext().getValor() != last.getValor()) {
-            if (actual.getNext().getValor().compareTo(buscado) == 0) {
+            if (actual.getNext().getValor() == buscado) {
+//            if (actual.getNext().getValor().compareTo(buscado) == 0) {
                 actual.setNext(actual.getNext().getNext());
                 actual.getNext().setPrev(actual);
                 this.size--;

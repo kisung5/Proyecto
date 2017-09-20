@@ -19,7 +19,7 @@ public class ListFactory {
      * Retorna la lista enlazada deseada.
      */
     public static List getList(String type) {
-        if("single".equals(type)) {
+        if("simple".equals(type)) {
             return new Lista<>();
         } else if("double".equals(type)) {
             return new ListaDoble<>();

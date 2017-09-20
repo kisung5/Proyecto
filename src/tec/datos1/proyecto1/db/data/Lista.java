@@ -90,7 +90,8 @@ public class Lista<T extends Comparable<T>> implements List<T>{
         Nodo<T> actual = this.first;
         int pos = 0;
         while (actual != null) {
-            if (actual.getValor().compareTo(buscado) == 0) {
+            if (actual.getValor() == buscado) {
+//            if (actual.getValor().compareTo(buscado) == 0) {
                 return actual;
             } else {
                 actual = actual.getNext();
@@ -113,7 +114,8 @@ public class Lista<T extends Comparable<T>> implements List<T>{
                 this.first = actual.getNext();
                 this.size--;
                 return;
-            } else if (actual.getNext().getValor().compareTo(buscado) == 0) {
+            } else if (actual.getNext().getValor() == buscado) {
+//            } else if (actual.getNext().getValor().compareTo(buscado) == 0) {
                 actual.setNext(actual.getNext().getNext());
                 this.size--;
                 return;
