@@ -18,7 +18,7 @@
             <TableColumn fx:id="column4" minWidth="0.0" prefWidth="110.0" />
         </columns>
       </TableView>
-      <Button fx:id="button" layoutX="313.0" layoutY="454.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="30.0" prefWidth="82.0" text="Commit" />
+      <Button fx:id="button" disable="true" layoutX="313.0" layoutY="454.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="30.0" prefWidth="82.0" text="Commit" />
       <Label fx:id="label" layoutX="412.0" layoutY="454.0" prefHeight="30.0" prefWidth="193.0" />
    </children>
 </AnchorPane>

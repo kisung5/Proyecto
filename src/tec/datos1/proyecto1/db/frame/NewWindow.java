@@ -43,6 +43,12 @@ public class NewWindow {
             UpdateFrameController controller = loader.getController();
             controller.setStage(window);
             window.show();
+        } else if (name.compareTo("NewDoc") == 0) {
+            NewDocController controller = loader.getController();
+            controller.setStage(window);
+            window.show();
+        } else {
+            return;
         }
     }
 }

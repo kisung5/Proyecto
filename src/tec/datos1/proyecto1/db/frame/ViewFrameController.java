@@ -15,7 +15,7 @@ import javafx.scene.control.TreeCell;
 import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeView;
 import javafx.util.Callback;
-import tec.datos1.proyecto1.db.frame.MenuCreator.ShowMenu;
+import tec.datos1.proyecto1.db.frame.MainMenu.ShowMenu;
 /**
  *
  * @author fundacionsos

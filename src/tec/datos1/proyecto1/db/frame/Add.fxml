@@ -14,8 +14,8 @@
       <TextField layoutX="163.0" layoutY="65.0" />
       <TextField layoutX="163.0" layoutY="99.0" />
       <Label layoutX="14.0" layoutY="24.0" prefHeight="19.0" prefWidth="149.0" text="Nombre del documento" />
-      <Label layoutX="14.0" layoutY="68.0" prefHeight="19.0" prefWidth="52.0" text="Label" />
-      <Label layoutX="14.0" layoutY="102.0" prefHeight="19.0" prefWidth="43.0" text="Label" />
+      <Label layoutX="14.0" layoutY="68.0" prefHeight="19.0" prefWidth="98.0" text="Tipo del atributo" />
+      <Label layoutX="14.0" layoutY="102.0" prefHeight="19.0" prefWidth="71.0" text="Atributo" />
       <Separator layoutX="4.0" layoutY="46.0" prefHeight="19.0" prefWidth="338.0" />
       <CheckBox layoutX="40.0" layoutY="185.0" mnemonicParsing="false" text="Foranea" />
       <TextField layoutX="163.0" layoutY="181.0" prefHeight="25.0" prefWidth="149.0" />
