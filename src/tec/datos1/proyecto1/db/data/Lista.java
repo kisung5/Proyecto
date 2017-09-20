@@ -9,21 +9,30 @@ package tec.datos1.proyecto1.db.data;
  *
  * @author fundacionsos
  * @param <T>
+ * El generico tipo T sirve para implementar una lista enlazda de T objetos.
  */
 
 public class Lista<T extends Comparable<T>> implements List<T>{
     private Nodo<T> first;
     private int size;
-
+    
     public Lista() {
         this.first = null;
     }
-
+    /**
+     * 
+     * @return
+     * Retorna true o false si la lista esta vacia.
+     */
     @Override
     public boolean isEmpty() {
         return this.first == null;
     }
-
+    /**
+     * 
+     * @param valor
+     * Parametro con el que se agrega un elemento a la lista tipo T.
+     */
     @Override
     public void addLast(T valor) {
         if (this.first == null) {
@@ -37,19 +46,12 @@ public class Lista<T extends Comparable<T>> implements List<T>{
             actual.setNext(new Nodo<>(valor));
             this.size++;
         }
-
     }
-
-    @Override
-    public T print() {
-        Nodo<T> actual = this.first;
-        while (actual != null) {
-            System.out.println(actual.getValor());
-            actual = actual.getNext();
-        }
-        return null;
-    }
-
+    /**
+     * 
+     * @param valor
+     * Recibe un valor tipo T y lo agrega al inicio de la lista enlazada.
+     */
     @Override
     public void addFirst(T valor) {
         if (this.first == null) {
@@ -62,7 +64,27 @@ public class Lista<T extends Comparable<T>> implements List<T>{
             this.size++;
         }
     }
-
+    /**
+     * 
+     * @return 
+     * Devuelve los objetos de la lista.
+     */
+    @Override
+    public T print() {
+        Nodo<T> actual = this.first;
+        while (actual != null) {
+            System.out.println(actual.getValor());
+            actual = actual.getNext();
+        }
+        return null;
+    }
+    /**
+     * 
+     * @param buscado
+     * Recibe un valor T buscado en la lista enlazada.
+     * @return
+     * Devuelve el nodo con el que se encuentra.
+     */
     @Override
     public Nodo<T> search(T buscado) {
         Nodo<T> actual = this.first;
@@ -77,7 +99,11 @@ public class Lista<T extends Comparable<T>> implements List<T>{
         }
         return null;
     }
-
+    /**
+     * 
+     * @param buscado 
+     * Recibe un buscado tipo T y lo elimina de la lista.
+     */
     @Override
     public void kickout(T buscado) {
         Nodo<T> actual = this.first;
@@ -96,7 +122,11 @@ public class Lista<T extends Comparable<T>> implements List<T>{
             }
         }
     }
-    
+    /**
+     * 
+     * @param pos
+     * @param valor 
+     */
     @Override
     public void insertPos(int pos, T valor) {
         Nodo<T> actual = this.first;

@@ -10,7 +10,14 @@ package tec.datos1.proyecto1.db.data;
  * @author fundacionsos
  */
 public class ListFactory {
-
+    /**
+     * 
+     * @param type
+     * Recibe un String el cual compara con el tipo de lista que se desea 
+     * obtener.
+     * @return
+     * Retorna la lista enlazada deseada.
+     */
     public static List getList(String type) {
         if("single".equals(type)) {
             return new Lista<>();
@@ -21,7 +28,5 @@ public class ListFactory {
         } else {
             return null;
         }
-    }
-
-    
+    }   
 }
