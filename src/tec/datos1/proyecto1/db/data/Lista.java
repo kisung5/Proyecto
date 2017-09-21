@@ -127,7 +127,10 @@ public class Lista<T extends Comparable<T>> implements List<T>{
     /**
      * 
      * @param pos
+     * Recibe un parametro entero pos para buscar en la lista enlazada e 
+     * insertar en esa posicion.
      * @param valor 
+     * El valor a ingresar en la pos.
      */
     @Override
     public void insertPos(int pos, T valor) {
@@ -153,7 +156,13 @@ public class Lista<T extends Comparable<T>> implements List<T>{
         }
         
     }
-    
+    /**
+     * 
+     * @param pos
+     * El parametro pos busca en Nodo T con ese indice.
+     * @return
+     * Da el nodo de la poscion seleccionada.
+     */
     @Override
     public Nodo<T> search(int pos) {
         Nodo<T> actual = this.first;
@@ -168,7 +177,11 @@ public class Lista<T extends Comparable<T>> implements List<T>{
         }
         return null;
     }
-    
+    /**
+     * 
+     * @param pos 
+     * Elimina el Nodo T de la lista con la int pos, este pos es el indice.
+     */
     @Override
     public void kickout(int pos) {
         Nodo<T> actual = this.first;
