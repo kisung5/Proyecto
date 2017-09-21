@@ -11,7 +11,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.BufferedReader;
 import java.io.FileWriter;
-
+import static tec.datos1.proyecto1.db.json.MakeDir.path;
 import com.google.gson.Gson;
 /**
  *
@@ -20,21 +20,15 @@ import com.google.gson.Gson;
 
 //Esta funcion excribe
 public class JsonConstructor {
-    public void construir() {
+    public void construir(Key key, String name) {
         try
-        {
-            //Create a new Employee object
-            Key key = new Key("String","Carlos","Persona","False","Personas");
-            // El key es la clase Store creada
-            //Set values to its properties
-
-            // Create a new Gson object
+        {     
             Gson gson = new Gson();
 
             //convert the Java object to json
             String jsonString = gson.toJson(key);
             //Write JSON String to file        
-            FileWriter fileWriter = new FileWriter("C:\\DataLinkedDB\\json.txt");
+            FileWriter fileWriter = new FileWriter(path + "\\LinkedDBdata\\"+ name);
             fileWriter.write(jsonString);
             fileWriter.close();
             
@@ -45,15 +39,13 @@ public class JsonConstructor {
     }
     
     //Esta funcion lee.
-    public void readJson() {
+    public void readJson(String name) {
         try {
             //Create a new Gson object
             Gson gson = new Gson();
 
-            //Read the employee.json file
-            BufferedReader br = new BufferedReader( new FileReader("C:\\DataLinkedDB\\json.txt"));
+            BufferedReader br = new BufferedReader( new FileReader(path + "\\LinkedDBdata\\"+ name));
 
-            //convert the json to  Java object (Employee)
             Key key = gson.fromJson(br, Key.class);
 
             //Printing the Employee Details

@@ -17,7 +17,7 @@ public class Key {
     private String valor;
     private String defecto;
     private String requerido;
-    private String storeName;
+    private String fileName;
     
     public Key() {
         super();
@@ -29,7 +29,7 @@ public class Key {
         this.valor = v;
         this.defecto = d;
         this.requerido = r;
-        this.storeName = s;
+        this.fileName = s;
     }
     
     public String getDefecto() {
@@ -49,11 +49,11 @@ public class Key {
     }
 
     public String getStoreName() {
-        return storeName;
+        return fileName;
     }
 
-    public void setStoreName(String storeName) {
-        this.storeName = storeName;
+    public void setStoreName(String fileName) {
+        this.fileName = fileName;
     }
     
     public String getAtributo() {

@@ -19,9 +19,6 @@ public class KeyCon {
 
                 case "float": Float.parseFloat(key.getValor());
                 return flag;
-                //case "fecha" PREGUNTAR
-//                default: Controller.errordialog();
-
             }
 
         }catch(Exception e){
@@ -38,15 +35,15 @@ public class KeyCon {
     }
     
     public String storeToString(Key key) {
-        String xoxo = "";
+        String formatter = "";
         
-        xoxo += key.getValor();
-        xoxo += ("-"+key.getAtributo());
-        xoxo += ("-"+key.getDefecto());
-        xoxo += ("-"+key.getRequerido());
-        xoxo += ("-"+key.getStoreName());
+        formatter += key.getValor();
+        formatter += ("-"+key.getAtributo());
+        formatter += ("-"+key.getDefecto());
+        formatter += ("-"+key.getRequerido());
+        formatter += ("-"+key.getStoreName());
         
-        return xoxo;
+        return formatter;
     }
     
     

@@ -11,14 +11,17 @@ package tec.datos1.proyecto1.db.json;
  */
 
 import java.io.File;
+import java.nio.file.Paths;
 //import java.io.IOException;
 
 public class MakeDir {
-    public static void makeDir(String name) {
-        File directory = new File("C:\\DataLinkedDB\\"+ name);
+    
+    public static File path = Paths.get(".").toAbsolutePath().normalize().toFile();
+    
+    public static void makeDir(String name) {    
+        File directory = new File(path + "\\LinkedBDdata\\" + name);
         if (directory.exists() && directory.isFile()) {
-            System.out.println("The dir with name could not be" +
-            " created as it is a normal file");
+            System.out.println("Ya existe");
         }
         else {
             try {
@@ -30,17 +33,21 @@ public class MakeDir {
 
             }
             catch (Exception e) {
-            System.out.println("prompt for error");
+            System.out.println("Error");
             }
         }
     }
     
     public static void eraseFile(String name) {
-        File fi = new File("C:\\DataLinkedDB\\"+name);
+        File fi = new File(path + "\\LinkedDBdata\\" + name);
         
         if (!fi.exists()) {
             System.out.println("El archivo data no existe.");
         } else {
+            for(File file : fi.listFiles() ) 
+                if ( !file.isDirectory() ){ 
+                    file.delete();
+                }
             fi.delete();
             System.out.println("El archivo data fue eliminado.");
         }
