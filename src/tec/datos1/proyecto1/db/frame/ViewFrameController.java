@@ -10,20 +10,29 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TreeCell;
 import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeView;
 import javafx.util.Callback;
+import tec.datos1.proyecto1.db.data.List;
 import tec.datos1.proyecto1.db.frame.MainMenu.ShowMenu;
+import static tec.datos1.proyecto1.db.data.ListFactory.getList;
+
 /**
  *
  * @author fundacionsos
  */
 public class ViewFrameController implements Initializable {
     
+    public static List<String> jsons = getList("simple");
+    public static List<String> documents = getList("double");
     public TreeItem<String> rootItem;
     
+//    @FXML
+//    private Button commitButton;
+//    
     @FXML
     private Label label;
     
@@ -49,4 +58,8 @@ public class ViewFrameController implements Initializable {
             }
         });
     }
+    
+//    public void active(Boolean flag) {
+//        commitButton.setDisable(flag);
+//    }
 }

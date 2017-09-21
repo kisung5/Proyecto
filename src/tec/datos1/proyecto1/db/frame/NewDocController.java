@@ -14,7 +14,8 @@ import javafx.stage.Stage;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TreeItem;
 import static tec.datos1.proyecto1.db.frame.MainMenu.ShowMenu.root;
-
+import static tec.datos1.proyecto1.db.frame.ViewFrameController.documents;
+        
 /**
  *
  * @author fundacionsos
@@ -22,11 +23,10 @@ import static tec.datos1.proyecto1.db.frame.MainMenu.ShowMenu.root;
 public class NewDocController implements Initializable {
 
     private Stage stage;
-//    public static Sendem sen;
     
     @FXML
     private TextField textDoc;
-    
+
     public void setStage(Stage stagePrincipal) {
         this.stage= stagePrincipal;
     }
@@ -34,15 +34,19 @@ public class NewDocController implements Initializable {
     @FXML
     private void newdocOut(ActionEvent event) {
         stage.close();
-        TreeItem<String> nchild = new TreeItem<> (textDoc.getText());
-        root.getChildren().add(nchild);
+        if (textDoc.getText() != "") {
+            
+            TreeItem<String> nchild = new TreeItem<> (textDoc.getText());
+            documents.addLast(textDoc.getText());
+            root.getChildren().add(nchild);
+//            ViewFrameController hola = null;
+//            hola.active(false);
+        } else {
+            return;
+        }
+//        commitButton.setDisable(false);
     }
     
-//    public static String getText() {
-//        System.out.println(name);
-//        return name;
-//    }
-  
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
