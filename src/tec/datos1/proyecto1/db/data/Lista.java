@@ -5,6 +5,8 @@
  */
 package tec.datos1.proyecto1.db.data;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author fundacionsos
@@ -70,13 +72,15 @@ public class Lista<T extends Comparable<T>> implements List<T>{
      * Devuelve los objetos de la lista.
      */
     @Override
-    public T print() {
+    public ArrayList<T> print() {
         Nodo<T> actual = this.first;
+        ArrayList<T> array = new ArrayList<>();
+        
         while (actual != null) {
-            System.out.println(actual.getValor());
+            array.add(actual.getValor());
             actual = actual.getNext();
         }
-        return null;
+        return array;
     }
     /**
      * 

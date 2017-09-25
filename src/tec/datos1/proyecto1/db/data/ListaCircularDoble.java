@@ -5,10 +5,13 @@
  */
 package tec.datos1.proyecto1.db.data;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author fundacionsos
  * @param <T>
+ * El T indica un generico comparable con otros valores.
  */
 
 public class ListaCircularDoble<T extends Comparable <T>> implements List<T> {
@@ -18,12 +21,20 @@ public class ListaCircularDoble<T extends Comparable <T>> implements List<T> {
     public ListaCircularDoble(){
         last = null;
     }
-    
+    /**
+     * 
+     * @return
+     * Ve si la lista esta vacia.
+     */
     @Override
     public boolean isEmpty() {
         return this.last == null;
     }
-
+    /**
+     * 
+     * @param valor 
+     * Recibe un valor tipo T y crea un Nodo T que lo inserta de ultimo.
+     */
     @Override
     public void addLast(T valor) {
         if (this.last == null) {
@@ -42,20 +53,27 @@ public class ListaCircularDoble<T extends Comparable <T>> implements List<T> {
         }
 
     }
-
+    /**
+     * 
+     * @return 
+     * Retorna los valores de la lista circular doble.
+     */
     @Override
-    public T print() {
+    public ArrayList<T> print() {
         Nodo<T> actual = this.last;
-        if (this.last != null) {
-            System.out.println(actual.getValor());
-        }
-        while (actual.getNext().getValor() != last.getValor()) {
-            System.out.println(actual.getValor());
+        ArrayList<T> array = new ArrayList<>();
+        
+        while (actual.getNext()!= last) {
+            array.add(actual.getValor());
             actual = actual.getNext();
         }
-        return null;
+        return array;
     }
-
+    /**
+     * 
+     * @param valor
+     * 
+     */
     @Override
     public void addFirst(T valor) {
         if (this.last == null) {

@@ -5,12 +5,13 @@
  */
 package tec.datos1.proyecto1.db.data;
 
-
 /**
  *
  * @author fundacionsos
  * @param <T>
  */
+
+import java.util.ArrayList;
 
 public class ListaDoble<T extends Comparable<T>> implements List<T> {
     private Nodo<T> indicate;
@@ -43,13 +44,15 @@ public class ListaDoble<T extends Comparable<T>> implements List<T> {
     }
 
     @Override
-    public T print() {
+    public ArrayList<T> print() {
         Nodo<T> actual = this.indicate;
+        ArrayList<T> array = new ArrayList<>();
+        
         while (actual != null) {
-            System.out.println(actual.getValor());
+            array.add(actual.getValor());
             actual = actual.getNext();
         }
-        return null;
+        return array;
     }
 
     @Override

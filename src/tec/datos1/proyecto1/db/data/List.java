@@ -5,6 +5,8 @@
  */
 package tec.datos1.proyecto1.db.data;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author fundacionsos
@@ -65,7 +67,7 @@ public interface List<T extends Comparable<T>> {
      * @return
      * Retorna los valores en memoria.
      */
-    T print();
+    ArrayList<T> print();
     /**
      * 
      * @param pos
