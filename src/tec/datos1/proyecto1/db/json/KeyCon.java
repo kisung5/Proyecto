@@ -37,8 +37,8 @@ public class KeyCon {
     public String storeToString(Key key) {
         String formatter = "";
         
-        formatter += key.getValor();
-        formatter += ("-"+key.getAtributo());
+        formatter += key.getAtributo();
+        formatter += ("-"+key.getValor());
         formatter += ("-"+key.getDefecto());
         formatter += ("-"+key.getRequerido());
         formatter += ("-"+key.getStoreName());

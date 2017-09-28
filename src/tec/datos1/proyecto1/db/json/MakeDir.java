@@ -11,26 +11,26 @@ package tec.datos1.proyecto1.db.json;
  */
 
 import java.io.File;
-import java.nio.file.Paths;
-//import java.io.IOException;
 
 public class MakeDir {
+    public static File directory;
     
-    public static File path = Paths.get(".").toAbsolutePath().normalize().toFile();
-    
-    public static void makeDir(String name) {    
-        File directory = new File(path + "\\LinkedBDdata\\" + name);
+    public static void makeDir(String name) {
+        directory = new File( System.getProperty("user.dir")
+                + "\\LinkedBDdata\\"+ name +"\\");
+        
         if (directory.exists() && directory.isFile()) {
             System.out.println("Ya existe");
         }
         else {
             try {
                 if (!directory.exists()) {
-                directory.mkdir();
+                    if (directory.mkdir()) {
+                        System.out.println("Listo");
+                    } else {
+                        System.out.println("No Listo");
+                    }
                 }
-                String username = System.getProperty("user.name");
-                String filename = " path/" + username + ".txt"; //extension if you need one
-
             }
             catch (Exception e) {
             System.out.println("Error");
@@ -39,7 +39,8 @@ public class MakeDir {
     }
     
     public static void eraseFile(String name) {
-        File fi = new File(path + "\\LinkedDBdata\\" + name);
+        File fi = new File(System.getProperty("user.dir")
+                + "\\LinkedBDdata\\" + name);
         
         if (!fi.exists()) {
             System.out.println("El archivo data no existe.");
