@@ -10,11 +10,9 @@ import java.io.IOException;
 import java.io.BufferedReader;
 import java.io.FileWriter;
 import static tec.datos1.proyecto1.db.json.MakeDir.directory;
-import static tec.datos1.proyecto1.db.json.MakeDir.makeDir;
 import com.google.gson.Gson;
 import java.io.BufferedWriter;
 import java.io.File;
-import java.nio.file.Path;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 /**
@@ -22,7 +20,6 @@ import java.util.logging.Logger;
  * @author fundacionsos
  */
 
-//Esta funcion excribe
 public class JsonConstructor {
     public void construir(Key key, String dir, String name) {
         Gson gson = new Gson();      
@@ -50,7 +47,6 @@ public class JsonConstructor {
         }
     }
     
-    //Esta funcion lee.
     public void readJson(String name) {
         try {
             //Create a new Gson object
