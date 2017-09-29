@@ -7,7 +7,8 @@ package tec.datos1.proyecto1.db.frame;
 
 import java.net.URL;
 import java.util.ResourceBundle;
-import javafx.beans.binding.Bindings;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.event.EventHandler;
@@ -18,15 +19,20 @@ import javafx.scene.control.ContextMenu;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.SeparatorMenuItem;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TreeCell;
 import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTreeCell;
 import javafx.util.Callback;
 import tec.datos1.proyecto1.db.data.List;
 import static tec.datos1.proyecto1.db.data.ListFactory.getList;
 import static tec.datos1.proyecto1.db.frame.NewWindow.newWindow;
-import static tec.datos1.proyecto1.db.json.MakeDir.makeDir;
+import tec.datos1.proyecto1.db.json.MetaData;
+import tec.datos1.proyecto1.db.json.Person;
+import tec.datos1.proyecto1.db.json.SaveFiles;
 
 /**
  *
@@ -38,27 +44,50 @@ public class ViewFrameController implements Initializable {
     public static List<String> documents = getList("double");
     public static List<String> garbage = getList("double");
     public static TreeItem<String> rootItem;
-    
+    private MetaData meta = new MetaData();
+    private TableColumn c1;
+    private TableColumn c2;
+    private TableColumn c3;
+    public static ObservableList<Person> data = FXCollections.observableArrayList(); 
+        
     @FXML
     private Button commitButton;
     
     @FXML
     private Label label;
     
+    @FXML 
+    private TableView tableView;
+    
     @FXML
     private TreeView<String> treeView;
     
     @FXML
     private void handleButtonAction(ActionEvent event){
-        for (String valor : documents.print()) {
-            makeDir(valor);
-        }
+        SaveFiles save = new SaveFiles(documents,jsons,garbage);
+        save.direct();
         label.setText("Guardado");
         commitButton.setDisable(true);
     }
     
     @Override
-    public void initialize(URL url, ResourceBundle rb) {
+    public void initialize(URL url, ResourceBundle rb) { 
+        
+        meta.getValues();
+        c1 = new TableColumn(meta.getArrayA().get(0));
+        c1.setMinWidth(200);
+        c1.setCellValueFactory(new PropertyValueFactory<>("name"));
+        
+        c2 = new TableColumn(meta.getArrayA().get(1));
+        c2.setMinWidth(200);
+        c2.setCellValueFactory(new PropertyValueFactory<>("id"));
+        
+        c3 = new TableColumn(meta.getArrayA().get(2));       
+        c3.setMinWidth(100);
+        c3.setCellValueFactory(new PropertyValueFactory<>("age"));
+        
+        tableView.setItems(data);
+      
         rootItem = new TreeItem<> ("Principal");
         rootItem.setExpanded(true);
 
@@ -115,7 +144,7 @@ public class ViewFrameController implements Initializable {
                         show.setOnAction(new EventHandler() {
                             @Override
                             public void handle(Event t) {
-        //                        table.setItems(list);
+                                tableView.getColumns().addAll(c1 ,c2 ,c3);
                             }
                         });
                         childnewMenu.setOnAction(new EventHandler() {
@@ -129,7 +158,8 @@ public class ViewFrameController implements Initializable {
                             @Override
                             public void handle(Event t) {
                                 garbage.addLast(getTreeItem().getValue());                               
-                                rootItem.getChildren().removeAll(getTreeItem());          
+                                rootItem.getChildren().removeAll(getTreeItem());
+                                commitButton.setDisable(false);
                             }
                         });
                         setContextMenu(contextMenu);
@@ -158,20 +188,13 @@ public class ViewFrameController implements Initializable {
                     } else if (getTreeItem().isLeaf() && getTreeItem().getParent().getParent() != null) {
                         
                         contextMenu = new ContextMenu();            
-                        contextMenu.getItems().addAll(update, spacer1,
-                        childnewMenu,show, spacer2, deleteMenu);
+                        contextMenu.getItems().addAll(update, spacer1, deleteMenu);
 
                         update.setOnAction(new EventHandler() {
                             @Override
                             public void handle(Event t) {
                                 newWindow("Update");
                                 commitButton.setDisable(false);
-                            }
-                        });
-                        show.setOnAction(new EventHandler() {
-                            @Override
-                            public void handle(Event t) {
-        //                        table.setItems(list);
                             }
                         });
                         deleteMenu.setOnAction(new EventHandler() {

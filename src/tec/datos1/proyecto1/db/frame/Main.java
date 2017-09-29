@@ -12,13 +12,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.TreeView;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-//import tec.datos1.proyecto1.db.data.List;
-//import static tec.datos1.proyecto1.db.data.ListFactory.getList;
-//import tec.datos1.proyecto1.db.data.Nodo;
-//import tec.datos1.proyecto1.db.json.JsonConstructor;
-//import tec.datos1.proyecto1.db.json.Key;
-//import tec.datos1.proyecto1.db.json.KeyCon;
-//import static tec.datos1.proyecto1.db.json.MakeDir.makeDir;
 
 /**
  *
@@ -53,19 +46,5 @@ public class Main extends Application {
     
     public static void main(String[] args) {
         launch(args);
-//        System.out.println(System.getProperty("user.dir"));
-//        KeyCon keycon = new KeyCon();
-//        Key key = new Key("String","Juan","","false","Casas");
-//        System.out.println(keycon.storeToString(key));
-//        List<String> lista = getList("simple");
-//        lista.addLast(keycon.storeToString(key));
-//        lista.print();
-//        Nodo<String> nodo = lista.search(0);
-//        String[] array = nodo.getValor().split("-", 0);
-//        System.out.println(array[1]);
-//        makeDir(array[4]);
-//        JsonConstructor construir = new JsonConstructor();
-//        construir.construir(key, array[4],array[1]);
-//        
     }
 }
