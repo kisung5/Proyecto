@@ -13,7 +13,6 @@ package tec.datos1.proyecto1.db.json;
 
 public class Key {
     
-    private String atributo;
     private String valor;
     private String defecto;
     private String requerido;
@@ -23,9 +22,8 @@ public class Key {
         super();
     }
     
-    public Key(String a, String v, String d, String r, String s) {
+    public Key(String v, String d, String r, String s) {
         super();
-        this.atributo = a;
         this.valor = v;
         this.defecto = d;
         this.requerido = r;
@@ -54,14 +52,6 @@ public class Key {
 
     public void setStoreName(String fileName) {
         this.fileName = fileName;
-    }
-    
-    public String getAtributo() {
-        return atributo;
-    }
-
-    public void setAtributo(String atributo) {
-        this.atributo = atributo;
     }
 
     public String getValor() {

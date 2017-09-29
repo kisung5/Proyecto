@@ -6,8 +6,6 @@
 package tec.datos1.proyecto1.db.json;
 
 import tec.datos1.proyecto1.db.data.List;
-import static tec.datos1.proyecto1.db.frame.ViewFrameController.documents;
-import static tec.datos1.proyecto1.db.frame.ViewFrameController.garbage;
 import static tec.datos1.proyecto1.db.json.MakeDir.eraseFile;
 import static tec.datos1.proyecto1.db.json.MakeDir.makeDir;
 
