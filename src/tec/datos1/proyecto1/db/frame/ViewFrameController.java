@@ -6,6 +6,7 @@
 package tec.datos1.proyecto1.db.frame;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -32,6 +33,7 @@ import static tec.datos1.proyecto1.db.data.ListFactory.getList;
 import static tec.datos1.proyecto1.db.frame.NewWindow.newWindow;
 import tec.datos1.proyecto1.db.json.MetaData;
 import tec.datos1.proyecto1.db.json.Person;
+import tec.datos1.proyecto1.db.json.PersonArray;
 import tec.datos1.proyecto1.db.json.SaveFiles;
 
 /**
@@ -48,7 +50,7 @@ public class ViewFrameController implements Initializable {
     private TableColumn c1;
     private TableColumn c2;
     private TableColumn c3;
-    public static ObservableList<Person> data = FXCollections.observableArrayList(); 
+    public static PersonArray person = new PersonArray();
         
     @FXML
     private Button commitButton;
@@ -85,8 +87,6 @@ public class ViewFrameController implements Initializable {
         c3 = new TableColumn(meta.getArrayA().get(2));       
         c3.setMinWidth(100);
         c3.setCellValueFactory(new PropertyValueFactory<>("age"));
-        
-        tableView.setItems(data);
       
         rootItem = new TreeItem<> ("Principal");
         rootItem.setExpanded(true);
@@ -126,7 +126,7 @@ public class ViewFrameController implements Initializable {
                         
                         contextMenu = new ContextMenu();
                         contextMenu.getItems().addAll(search, spacer1,
-                        childnewMenu, show, spacer2, update, deleteMenu);
+                        childnewMenu, show, spacer2, deleteMenu);
                       
                         search.setOnAction(new EventHandler() {
                             @Override
@@ -134,22 +134,22 @@ public class ViewFrameController implements Initializable {
                                 newWindow("Search");
                             }
                         });
-                        update.setOnAction(new EventHandler() {
-                            @Override
-                            public void handle(Event t) {
-                                newWindow("Update");
-                                commitButton.setDisable(false);
-                            }
-                        });
                         show.setOnAction(new EventHandler() {
                             @Override
                             public void handle(Event t) {
+                                ObservableList<Person> data = FXCollections.observableArrayList();
+                                ArrayList<String> tempArray = person.getPerson(getTreeItem().getValue());
+                                for (String str: tempArray) {
+                                    String[] arrayL = str.split("-", 0);
+                                    data.add(new Person(arrayL[0],arrayL[1],arrayL[2]));
+                                }
+                                tableView.setItems(data);
                                 tableView.getColumns().addAll(c1 ,c2 ,c3);
                             }
                         });
                         childnewMenu.setOnAction(new EventHandler() {
                             @Override
-                            public void handle(Event t) {       
+                            public void handle(Event t) {
                                 newWindow("Add",getTreeItem());                           
                                 commitButton.setDisable(false);
                             }
@@ -194,6 +194,7 @@ public class ViewFrameController implements Initializable {
                             @Override
                             public void handle(Event t) {
                                 newWindow("Update");
+//                                data.set(0, e);
                                 commitButton.setDisable(false);
                             }
                         });

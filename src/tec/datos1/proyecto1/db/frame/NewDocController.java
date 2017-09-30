@@ -17,7 +17,8 @@ import javafx.scene.control.TreeItem;
 import static tec.datos1.proyecto1.db.frame.ViewFrameController.rootItem;
 import static tec.datos1.proyecto1.db.frame.ViewFrameController.documents;
 import javafx.scene.control.Alert;
-        
+import static tec.datos1.proyecto1.db.frame.ViewFrameController.person;
+
 /**
  *
  * @author fundacionsos
@@ -49,6 +50,7 @@ public class NewDocController implements Initializable {
             TreeItem<String> nchild = new TreeItem<> (textDoc.getText());
             documents.addLast(textDoc.getText());
             rootItem.getChildren().add(nchild);
+            person.setPerson(textDoc.getText());
         }
     }
     

@@ -7,16 +7,17 @@ package tec.datos1.proyecto1.db.frame;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TreeItem;
 import javafx.stage.Stage;
 import static tec.datos1.proyecto1.db.frame.NewWindow.item;
-import static tec.datos1.proyecto1.db.frame.ViewFrameController.data;
-import tec.datos1.proyecto1.db.json.Person;
+import static tec.datos1.proyecto1.db.frame.ViewFrameController.person;
 
 /**
  *
@@ -51,31 +52,28 @@ public class AddFrameController implements Initializable{
     @FXML
     private void addOut(ActionEvent event) {
         stage.close();
-//        if (flag) {
-//            if ((nameText.getText() == null || nameText.getText().trim().isEmpty()) 
-//                    && (idText.getText() == null) || idText.getText().trim().isEmpty()) {
-//            Platform.runLater(new Runnable() {
-//                public void run() {
-//                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
-//                    alert.setTitle("Error");
-//                    alert.setHeaderText("No se pueden dejar esos espacios en blanco.");
-//                    alert.showAndWait();
-//                    }
-//                });
-//            } else {
-            
-            TreeItem<String> nchild = new TreeItem<> (nameText.getText());
-            item.getChildren().add(nchild);
-            data.add(new Person(nameText.getText(),idText.getText(),ageText.getText()));
-            }
-//        } else {
-//            System.out.println("hola");
-//        }
-//    }
+        if ((nameText.getText() == null || nameText.getText().trim().isEmpty()) 
+                && (idText.getText() == null) || idText.getText().trim().isEmpty()) {
+        Platform.runLater(new Runnable() {
+            public void run() {
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Error");
+                alert.setHeaderText("No se pueden dejar esos espacios en blanco.");
+                alert.showAndWait();
+                }
+            });
+        } else {
+
+        TreeItem<String> nchild = new TreeItem<> (nameText.getText());
+        item.getChildren().add(nchild);
+        person.setPerson(item.getValue().toString(), nameText.getText(), 
+                idText.getText(), ageText.getText());
+        }
+    }
   
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        labelTitle.setText(item.getValue().toString());
     }    
 }
 
