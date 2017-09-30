@@ -64,17 +64,19 @@ public class SaveFiles {
         File directory = new File(System.getProperty("user.dir") 
             + "\\LinkedBDdata\\");
         
-        for (int num : keygar.print()) {
-            for (File file: directory.listFiles() ) {
-                if (file.isDirectory()) {
-                    for (File arch : file.listFiles()) {
-                        if (arch.getName() == (file.getName()+"."+Integer.toString(num))) {
-                            arch.delete();
+            for (int num : keygar.print()) {
+                for (File file: directory.listFiles() ) {
+                    if (file.isDirectory()) {
+                        for (File arch : file.listFiles()) {
+                            if (arch.getName() == (file.getName()+"."+Integer.toString(num))) {
+                                System.out.println(arch.getName());
+                                System.out.println(file.getName()+"."+Integer.toString(num));
+                                arch.delete();
+                            }
                         }
                     }
                 }
             }
-        }
         
     }
 }
