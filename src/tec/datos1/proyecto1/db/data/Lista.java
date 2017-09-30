@@ -18,16 +18,6 @@ public class Lista<T extends Comparable<T>> implements List<T>{
     private Nodo<T> first;
     private int size;
     private String identifier;
-
-    @Override
-    public String getIdentifier() {
-        return identifier;
-    }
-
-    @Override
-    public void setIdentifier(String identifier) {
-        this.identifier = identifier;
-    }
     
     public Lista() {
         this.first = null;

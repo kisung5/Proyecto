@@ -76,8 +76,4 @@ public interface List<T extends Comparable<T>> {
      * Retorna un Nodo T.
      */
     Nodo<T> search(int pos);   
-
-    void setIdentifier(String identifier);
-    
-    String getIdentifier();
 }

@@ -18,16 +18,6 @@ public class ListaDoble<T extends Comparable<T>> implements List<T> {
     private int size;
     private String identifier;
 
-    @Override
-    public String getIdentifier() {
-        return identifier;
-    }
-
-    @Override
-    public void setIdentifier(String identifier) {
-        this.identifier = identifier;
-    }
-    
     public ListaDoble() {
         this.indicate = null;
     }
