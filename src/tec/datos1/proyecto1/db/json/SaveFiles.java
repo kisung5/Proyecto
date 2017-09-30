@@ -8,12 +8,17 @@ package tec.datos1.proyecto1.db.json;
 import tec.datos1.proyecto1.db.data.List;
 import static tec.datos1.proyecto1.db.json.MakeDir.eraseFile;
 import static tec.datos1.proyecto1.db.json.MakeDir.makeDir;
+import tec.datos1.proyecto1.db.json.JsonConstructor;
+import tec.datos1.proyecto1.db.json.KeyCon;
 
 /**
  *
  * @author fundacionsos
  */
 public class SaveFiles {
+    private JsonConstructor constructor = new JsonConstructor();
+    private KeyCon keycon = new KeyCon();
+    
     private List<String> documents;
     private List<String> objects;
     private List<String> garbage;
@@ -42,6 +47,14 @@ public class SaveFiles {
         }
         for (String valor : garbage.print()) {
             eraseFile(valor);
+        }
+        
+        int count = 0;
+        for (String valor : objects.print()) {
+            Key key = keycon.stringToStore(valor);
+            constructor.construir(key, key.getStoreName(), key.getStoreName()+
+                    "."+Integer.toString(count));
+            count++;
         }
     }
 }

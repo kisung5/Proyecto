@@ -18,13 +18,20 @@ import javafx.scene.control.TreeItem;
 import javafx.stage.Stage;
 import static tec.datos1.proyecto1.db.frame.NewWindow.item;
 import static tec.datos1.proyecto1.db.frame.ViewFrameController.person;
+import static tec.datos1.proyecto1.db.frame.ViewFrameController.jsons;
+import tec.datos1.proyecto1.db.json.Person;
+import com.google.gson.Gson;
+import tec.datos1.proyecto1.db.json.Key;
+import tec.datos1.proyecto1.db.json.KeyCon;
 
 /**
  *
  * @author fundacionsos
  */
 public class AddFrameController implements Initializable{
-
+    
+    private Gson gson = new Gson();
+    private KeyCon keycon = new KeyCon();
     private Stage stage;
     private Boolean flag = false;
     
@@ -63,7 +70,12 @@ public class AddFrameController implements Initializable{
                 }
             });
         } else {
-
+        
+        Person p = new Person(nameText.getText(),idText.getText(), ageText.getText());
+        String jsonString = gson.toJson(p);
+        Key key = new Key(jsonString,"","false",item.getValue().toString()); 
+        jsons.addLast(keycon.storeToString(key));
+        
         TreeItem<String> nchild = new TreeItem<> (nameText.getText());
         item.getChildren().add(nchild);
         person.setPerson(item.getParent().getChildren().lastIndexOf(item), nameText.getText(), 
