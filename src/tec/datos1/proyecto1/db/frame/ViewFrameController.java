@@ -30,6 +30,7 @@ import javafx.util.Callback;
 import tec.datos1.proyecto1.db.data.List;
 import static tec.datos1.proyecto1.db.data.ListFactory.getList;
 import static tec.datos1.proyecto1.db.frame.NewWindow.newWindow;
+import tec.datos1.proyecto1.db.json.LoadFiles;
 import tec.datos1.proyecto1.db.json.MetaData;
 import tec.datos1.proyecto1.db.json.Person;
 import tec.datos1.proyecto1.db.json.PersonArray;
@@ -96,6 +97,9 @@ public class ViewFrameController implements Initializable {
         c3.setCellValueFactory(new PropertyValueFactory<>("age"));
 
         tableView.getColumns().addAll(c1 ,c2 ,c3);
+        
+        LoadFiles loadFile = new LoadFiles();
+        loadFile.load();
         
         treeView.setCellFactory(new Callback<TreeView<String>, TreeCell<String>>() {
             class ShowMenu extends TextFieldTreeCell<String> {

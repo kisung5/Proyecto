@@ -9,9 +9,6 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.TreeItem;
-import javafx.scene.control.TreeView;
-import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 /**
@@ -22,9 +19,8 @@ import javafx.stage.Stage;
 
 public class Main extends Application {
     
-    public static Stage stage;
-    private AnchorPane rootPane;
-    private TreeView tree;
+    public static Stage stage;  
+    
     
     @Override
     public void start(Stage stage) throws Exception {
@@ -46,11 +42,6 @@ public class Main extends Application {
      */
     
     public static void main(String[] args) {
-//        TreeItem<String> item = new TreeItem();
-//        TreeItem<String> n = new TreeItem();
-//        TreeItem<String> i = new TreeItem();
-//        item.getChildren().addAll(n,i);
-//        System.out.println(item.getChildren().indexOf(i));
         launch(args);
     }
 }

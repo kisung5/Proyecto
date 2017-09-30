@@ -10,17 +10,25 @@ import java.io.IOException;
 import java.io.BufferedReader;
 import java.io.FileWriter;
 import static tec.datos1.proyecto1.db.json.MakeDir.directory;
+import static tec.datos1.proyecto1.db.frame.ViewFrameController.jsons;
 import com.google.gson.Gson;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.scene.control.TreeItem;
+import static tec.datos1.proyecto1.db.frame.ViewFrameController.person;
+import static tec.datos1.proyecto1.db.frame.ViewFrameController.rootItem;
+
 /**
  *
  * @author fundacionsos
  */
 
 public class JsonConstructor {
+    
+    private KeyCon keycon = new KeyCon();
+    
     public void construir(Key key, String dir, String name) {
         Gson gson = new Gson();      
         File file = new File(directory, name + ".txt");
@@ -47,24 +55,22 @@ public class JsonConstructor {
         }
     }
     
-    public void readJson(String name) {
+    public void readJson(File name, int id) {
         try {
-            //Create a new Gson object
             Gson gson = new Gson();
-
-            BufferedReader br = new BufferedReader( new FileReader(directory + name));
+            BufferedReader br = new BufferedReader( new FileReader(name));
 
             Key key = gson.fromJson(br, Key.class);
-
-            //Printing the Employee Details
-//            System.out.println("****Employee Details****");
-//            System.out.println("Employee Name    : "+key.;
-//            System.out.println("Employee ID      : "+key.getAtributo());
-//            System.out.print("Employee Department: "+key.getValor());
-//            for(String department : key.getStoreName())
-//            {
-//                System.out.print(department+" | ");
-//            }
+            jsons.addLast(keycon.storeToString(key));
+            
+            Person personOb = gson.fromJson(key.getValor(), Person.class);
+            person.setPerson();
+            person.setPerson(id, personOb.getName(), personOb.getId(), 
+                    personOb.getAge());
+            
+            TreeItem<String> nitem = new TreeItem<>(personOb.getName());
+            rootItem.getChildren().get(id).getChildren().add(nitem);
+            
             }
             catch (IOException e) 
             {  
