@@ -9,7 +9,6 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.BufferedReader;
 import java.io.FileWriter;
-import static tec.datos1.proyecto1.db.json.MakeDir.directory;
 import static tec.datos1.proyecto1.db.frame.ViewFrameController.jsons;
 import com.google.gson.Gson;
 import java.io.BufferedWriter;
@@ -31,7 +30,8 @@ public class JsonConstructor {
     
     public void construir(Key key, String dir, String name) {
         Gson gson = new Gson();      
-        File file = new File(directory, name + ".txt");
+        File file = new File(System.getProperty("user.dir")
+                + "\\LinkedBDdata\\"+dir, name + ".txt");
         String jsonString = gson.toJson(key);
         
         try {
