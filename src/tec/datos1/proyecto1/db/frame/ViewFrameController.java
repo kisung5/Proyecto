@@ -45,6 +45,7 @@ public class ViewFrameController implements Initializable {
     public static List<String> jsons = getList("simple");
     public static List<String> documents = getList("double");
     public static List<String> garbage = getList("double");
+    public static List<Integer> keygar = getList("simple");
     public static TreeItem<String> rootItem;
     private MetaData meta = new MetaData();
     public static PersonArray person = new PersonArray();
@@ -65,7 +66,7 @@ public class ViewFrameController implements Initializable {
     
     @FXML
     private void handleButtonAction(ActionEvent event){
-        SaveFiles save = new SaveFiles(documents,jsons,garbage);
+        SaveFiles save = new SaveFiles(documents,jsons,garbage,keygar);
         save.direct();
         label.setText("Guardado");
         commitButton.setDisable(true);
@@ -185,6 +186,7 @@ public class ViewFrameController implements Initializable {
                             @Override
                             public void handle(Event t) {       
                                 newWindow("NewDoc");
+                                keygar.addLast(rootItem.getChildren().indexOf(getTreeItem()));
                                 commitButton.setDisable(false);
                             }
                         });

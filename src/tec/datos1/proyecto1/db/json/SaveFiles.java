@@ -5,6 +5,7 @@
  */
 package tec.datos1.proyecto1.db.json;
 
+import java.io.File;
 import tec.datos1.proyecto1.db.data.List;
 import static tec.datos1.proyecto1.db.json.MakeDir.eraseFile;
 import static tec.datos1.proyecto1.db.json.MakeDir.makeDir;
@@ -22,6 +23,7 @@ public class SaveFiles {
     private List<String> documents;
     private List<String> objects;
     private List<String> garbage;
+    private List<Integer> keygar;
     
     public SaveFiles(List<String> documents) {
         this.documents = documents;
@@ -35,10 +37,12 @@ public class SaveFiles {
         this.garbage = null;
     }
     
-    public SaveFiles(List<String> documents,List<String> objects, List<String> garbage) {
+    public SaveFiles(List<String> documents,List<String> objects, 
+            List<String> garbage, List<Integer> keygar) {
         this.documents = documents;
         this.objects = objects;
         this.garbage = garbage;
+        this.keygar = keygar;
     }
     
     public void direct() {
@@ -56,5 +60,21 @@ public class SaveFiles {
                     "."+Integer.toString(count));
             count++;
         }
+        
+        File directory = new File(System.getProperty("user.dir") 
+            + "\\LinkedBDdata\\");
+        
+        for (int num : keygar.print()) {
+            for (File file: directory.listFiles() ) {
+                if (file.isDirectory()) {
+                    for (File arch : file.listFiles()) {
+                        if (arch.getName() == (file.getName()+"."+Integer.toString(num))) {
+                            arch.delete();
+                        }
+                    }
+                }
+            }
+        }
+        
     }
 }

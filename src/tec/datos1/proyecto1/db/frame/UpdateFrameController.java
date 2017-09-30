@@ -10,7 +10,10 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import static tec.datos1.proyecto1.db.frame.ViewFrameController.rootItem;
 
 /**
  *
@@ -18,6 +21,18 @@ import javafx.stage.Stage;
  */
 public class UpdateFrameController implements Initializable{
     private Stage stage;
+    
+    @FXML
+    private Label mainLabel;
+    
+    @FXML
+    private TextField nText;
+    
+    @FXML
+    private TextField cText;
+    
+    @FXML
+    private TextField eText;
     
     public void setStage(Stage stagePrincipal) {
         this.stage= stagePrincipal;
