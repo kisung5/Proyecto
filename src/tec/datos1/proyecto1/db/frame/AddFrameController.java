@@ -66,7 +66,7 @@ public class AddFrameController implements Initializable{
 
         TreeItem<String> nchild = new TreeItem<> (nameText.getText());
         item.getChildren().add(nchild);
-        person.setPerson(item.getValue().toString(), nameText.getText(), 
+        person.setPerson(item.getParent().getChildren().lastIndexOf(item), nameText.getText(), 
                 idText.getText(), ageText.getText());
         }
     }

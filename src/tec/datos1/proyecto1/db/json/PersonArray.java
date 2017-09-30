@@ -5,8 +5,6 @@
  */
 package tec.datos1.proyecto1.db.json;
 
-import tec.datos1.proyecto1.db.data.List;
-import static tec.datos1.proyecto1.db.data.ListFactory.getList;
 import java.util.ArrayList;
 
 /**
@@ -14,28 +12,19 @@ import java.util.ArrayList;
  * @author fundacionsos
  */
 public class PersonArray {
-    private ArrayList<List<String>> arrayList = new ArrayList<>();
+    ArrayList<ArrayList> elements = new ArrayList<>();
     
-    public void setPerson(String id) {
-        List<String> list = getList("simple");
-        list.setIdentifier(id);
-        arrayList.add(list);
+    public void setPerson() {
+        ArrayList<Person> nArray = new ArrayList<>();      
+        elements.add(nArray);
     }
     
-    public void setPerson(String id,String name, String num, String age) {
-        for (List<String> pList : arrayList) {
-            if(pList.getIdentifier() == id) {;  
-                pList.addLast(name+"-"+age+"-"+num);
-            }
-        }
+    public void setPerson(int id,String name, String num, String age) {
+        ArrayList<Person> temp= elements.get(id);
+        temp.add(new Person(name,num,age));
     }
     
-    public ArrayList<String> getPerson(String id) {
-        for (List<String> pList : arrayList) {
-            if(pList.getIdentifier() == id) {
-                return pList.print();
-            }
-        }
-        return null;
+    public ArrayList<Person> getPerson(int id) {
+        return elements.get(id);
     }
 }

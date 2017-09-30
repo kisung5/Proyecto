@@ -6,7 +6,6 @@
 package tec.datos1.proyecto1.db.frame;
 
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -47,10 +46,9 @@ public class ViewFrameController implements Initializable {
     public static List<String> garbage = getList("double");
     public static TreeItem<String> rootItem;
     private MetaData meta = new MetaData();
-    private TableColumn c1;
-    private TableColumn c2;
-    private TableColumn c3;
     public static PersonArray person = new PersonArray();
+    public static ObservableList<Person> data = 
+            FXCollections.observableArrayList();
         
     @FXML
     private Button commitButton;
@@ -73,25 +71,31 @@ public class ViewFrameController implements Initializable {
     }
     
     @Override
-    public void initialize(URL url, ResourceBundle rb) { 
+    public void initialize(URL url, ResourceBundle rb) {
+        
+        TableColumn c1;
+        TableColumn c2;
+        TableColumn c3;
+        
+        rootItem = new TreeItem<> ("Principal");
+        rootItem.setExpanded(true);
+        
+        treeView.setRoot(rootItem);
         
         meta.getValues();
         c1 = new TableColumn(meta.getArrayA().get(0));
         c1.setMinWidth(200);
         c1.setCellValueFactory(new PropertyValueFactory<>("name"));
-        
+
         c2 = new TableColumn(meta.getArrayA().get(1));
         c2.setMinWidth(200);
         c2.setCellValueFactory(new PropertyValueFactory<>("id"));
-        
+
         c3 = new TableColumn(meta.getArrayA().get(2));       
         c3.setMinWidth(100);
         c3.setCellValueFactory(new PropertyValueFactory<>("age"));
-      
-        rootItem = new TreeItem<> ("Principal");
-        rootItem.setExpanded(true);
 
-        treeView.setRoot(rootItem);
+        tableView.getColumns().addAll(c1 ,c2 ,c3);
         
         treeView.setCellFactory(new Callback<TreeView<String>, TreeCell<String>>() {
             class ShowMenu extends TextFieldTreeCell<String> {
@@ -103,8 +107,8 @@ public class ViewFrameController implements Initializable {
                 SeparatorMenuItem spacer1;
                 SeparatorMenuItem spacer2;
                 
-               private ContextMenu contextMenu;
-               
+                private ContextMenu contextMenu;
+
                 public ShowMenu() {
                     
                     spacer1 = new SeparatorMenuItem();
@@ -114,16 +118,17 @@ public class ViewFrameController implements Initializable {
                     show = new MenuItem("Mostrar");
                     childnewMenu = new MenuItem("Nuevo");
                     deleteMenu = new MenuItem("Eliminar");
+                    
                 }
                 
                 @Override
                 public void updateItem(String item, boolean empty) {
                     super.updateItem(item, empty);
-
+                    
                     if (empty) {
                         setGraphic(null);
                     } else if (getTreeItem().getParent() == rootItem) {
-                        
+
                         contextMenu = new ContextMenu();
                         contextMenu.getItems().addAll(search, spacer1,
                         childnewMenu, show, spacer2, deleteMenu);
@@ -137,14 +142,10 @@ public class ViewFrameController implements Initializable {
                         show.setOnAction(new EventHandler() {
                             @Override
                             public void handle(Event t) {
-                                ObservableList<Person> data = FXCollections.observableArrayList();
-                                ArrayList<String> tempArray = person.getPerson(getTreeItem().getValue());
-                                for (String str: tempArray) {
-                                    String[] arrayL = str.split("-", 0);
-                                    data.add(new Person(arrayL[0],arrayL[1],arrayL[2]));
-                                }
+                                data.clear();
+                                data.addAll(person.getPerson(rootItem.getChildren().indexOf(getTreeItem())));
                                 tableView.setItems(data);
-                                tableView.getColumns().addAll(c1 ,c2 ,c3);
+
                             }
                         });
                         childnewMenu.setOnAction(new EventHandler() {
