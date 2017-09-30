@@ -10,22 +10,6 @@ package tec.datos1.proyecto1.db.json;
  * @author fundacionsos
  */
 public class KeyCon {
-    private Boolean flag = true;
-//    public Boolean validar(Key key){ //todo REVISAR RETURN
-//        try{
-//            switch(key.getAtributo()){
-//                case "int": Integer.parseInt(key.getValor());
-//                return flag;
-//
-//                case "float": Float.parseFloat(key.getValor());
-//                return flag;
-//            }
-//
-//        }catch(Exception e){
-//            return false;
-//        }
-//        return flag;
-//    }
 
     public Key stringToStore(String value) {
         //String = valor-defecto-requiered-storename
